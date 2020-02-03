@@ -8,26 +8,24 @@ var getRandomValue = function (values) {
 };
 
 var CHARACTER_NAMES = [
-  [
-    'Иван',
-    'Хуан Себастьян',
-    'Мария',
-    'Кристоф',
-    'Виктор',
-    'Юлия',
-    'Люпита',
-    'Вашингтон'
-  ],
-  [
-    'да Марья',
-    'Верон',
-    'Мирабелла',
-    'Вальц',
-    'Онопко',
-    'Топольницкая',
-    'Нионго',
-    'Ирвинг'
-  ]
+  'Иван',
+  'Хуан Себастьян',
+  'Мария',
+  'Кристоф',
+  'Виктор',
+  'Юлия',
+  'Люпита',
+  'Вашингтон'
+];
+var CHARACTER_SECOND_NAMES = [
+  'да Марья',
+  'Верон',
+  'Мирабелла',
+  'Вальц',
+  'Онопко',
+  'Топольницкая',
+  'Нионго',
+  'Ирвинг'
 ];
 var CHARACTER_COAT_COLORS = [
   'rgb(101, 137, 164)',
@@ -47,22 +45,22 @@ var CHARACTER_EYES_COLORS = [
 
 var characterInformation = [
   {
-    name: getRandomValue(CHARACTER_NAMES[0]) + ' ' + getRandomValue(CHARACTER_NAMES[1]),
+    name: getRandomValue(CHARACTER_NAMES) + ' ' + getRandomValue(CHARACTER_SECOND_NAMES),
     coatColor: getRandomValue(CHARACTER_COAT_COLORS),
     eyesColor: getRandomValue(CHARACTER_EYES_COLORS)
   },
   {
-    name: getRandomValue(CHARACTER_NAMES[1]) + ' ' + getRandomValue(CHARACTER_NAMES[0]),
+    name: getRandomValue(CHARACTER_SECOND_NAMES) + ' ' + getRandomValue(CHARACTER_NAMES),
     coatColor: getRandomValue(CHARACTER_COAT_COLORS),
     eyesColor: getRandomValue(CHARACTER_EYES_COLORS)
   },
   {
-    name: getRandomValue(CHARACTER_NAMES[0]) + ' ' + getRandomValue(CHARACTER_NAMES[1]),
+    name: getRandomValue(CHARACTER_NAMES) + ' ' + getRandomValue(CHARACTER_SECOND_NAMES),
     coatColor: getRandomValue(CHARACTER_COAT_COLORS),
     eyesColor: getRandomValue(CHARACTER_EYES_COLORS)
   },
   {
-    name: getRandomValue(CHARACTER_NAMES[1]) + ' ' + getRandomValue(CHARACTER_NAMES[0]),
+    name: getRandomValue(CHARACTER_SECOND_NAMES) + ' ' + getRandomValue(CHARACTER_NAMES),
     coatColor: getRandomValue(CHARACTER_COAT_COLORS),
     eyesColor: getRandomValue(CHARACTER_EYES_COLORS)
   }
