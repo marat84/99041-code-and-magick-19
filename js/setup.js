@@ -73,12 +73,16 @@ var renderCharacter = function (character) {
 
 var characterSimilarList = setupBlock.querySelector('.setup-similar-list');
 
-var characterFragment = document.createDocumentFragment();
+var appendCharacterInToFragment = function (characters) {
+  var characterFragment = document.createDocumentFragment();
 
-for (var i = 0; i < characterInformation.length; i++) {
-  characterFragment.appendChild(renderCharacter(characterInformation[i]));
-}
+  for (var i = 0; i < characters.length; i++) {
+    characterFragment.appendChild(renderCharacter(characters[i]));
+  }
 
-characterSimilarList.appendChild(characterFragment);
+  return characterFragment;
+};
+
+characterSimilarList.appendChild(appendCharacterInToFragment(characterInformation));
 
 document.querySelector('.setup-similar').classList.remove('hidden');
