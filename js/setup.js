@@ -1,7 +1,12 @@
 'use strict';
 
+var ENTER_KEY = 'Enter';
+var ESCAPE_KEY = 'Escape';
+
 var setupBlock = document.querySelector('.setup');
-setupBlock.classList.remove('hidden');
+var setupButtonOpen = document.querySelector('.setup-open');
+var setupButtonClose = document.querySelector('.setup-close');
+var setupInput = setupBlock.querySelector('.setup-user-name');
 
 var getRandomValue = function (values) {
   return values[Math.floor(Math.random() * values.length)];
@@ -86,3 +91,41 @@ var appendCharacterInToFragment = function (characters) {
 characterSimilarList.appendChild(appendCharacterInToFragment(characterInformation));
 
 document.querySelector('.setup-similar').classList.remove('hidden');
+
+var closeDialog = function () {
+  setupBlock.classList.add('hidden');
+
+  document.removeEventListener('keydown', documentKeyDownHandler);
+};
+
+var openDialog = function () {
+  setupBlock.classList.remove('hidden');
+
+  document.addEventListener('keydown', documentKeyDownHandler);
+};
+
+var documentKeyDownHandler = function (evt) {
+  if (evt.key === ESCAPE_KEY && evt.target !== setupInput) {
+    closeDialog();
+  }
+};
+
+setupButtonOpen.addEventListener('click', function () {
+  openDialog();
+});
+
+setupButtonClose.addEventListener('click', function () {
+  closeDialog();
+});
+
+setupButtonOpen.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    openDialog();
+  }
+});
+
+setupButtonClose.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    closeDialog();
+  }
+});
