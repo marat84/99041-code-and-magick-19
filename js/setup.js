@@ -47,6 +47,13 @@ var CHARACTER_EYES_COLORS = [
   'yellow',
   'green'
 ];
+var CHARACTER_FIREBALL_COLOR = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
 
 var generateData = function (count) {
   var arrayResult = [];
@@ -129,3 +136,34 @@ setupButtonClose.addEventListener('keydown', function (evt) {
     closeDialog();
   }
 });
+
+
+var mainCharacter = document.querySelector('.setup-player');
+
+var getInputByName = function (inputName) {
+  return mainCharacter.querySelector('input[name="' + inputName + '"]');
+};
+
+var filterClickHandler = function (evt) {
+  var target = evt.target;
+  var randomCoatColor = getRandomValue(CHARACTER_COAT_COLORS);
+  var randomEyesColor = getRandomValue(CHARACTER_EYES_COLORS);
+  var randomFireballColor = getRandomValue(CHARACTER_FIREBALL_COLOR);
+
+  if (target && target.matches('.wizard-coat')) {
+    target.style.fill = randomCoatColor;
+    getInputByName('coat-color').value = randomCoatColor;
+  }
+
+  if (target && target.matches('.wizard-eyes')) {
+    target.style.fill = randomEyesColor;
+    getInputByName('eyes-color').value = randomEyesColor;
+  }
+
+  if (target && target.matches('.setup-fireball')) {
+    target.parentElement.style.background = randomFireballColor;
+    getInputByName('fireball-color').value = randomFireballColor;
+  }
+};
+
+mainCharacter.addEventListener('click', filterClickHandler);
