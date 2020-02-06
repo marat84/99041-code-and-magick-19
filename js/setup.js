@@ -6,6 +6,8 @@ var ESCAPE_KEY = 'Escape';
 var setupBlock = document.querySelector('.setup');
 var setupButtonOpen = document.querySelector('.setup-open');
 var setupButtonClose = document.querySelector('.setup-close');
+
+// Работа над валидацие поля имени персонажа в диалоговом окне
 var setupInput = setupBlock.querySelector('.setup-user-name');
 var inputMinLength = +setupInput.getAttribute('minlength') || 2;
 var inputMaxLength = +setupInput.getAttribute('maxlength') || 25;
@@ -22,6 +24,7 @@ setupInput.addEventListener('input', function (evt) {
   }
 });
 
+// Получение случайного значения из массива данных
 var getRandomValue = function (values) {
   return values[Math.floor(Math.random() * values.length)];
 };
@@ -69,6 +72,7 @@ var CHARACTER_FIREBALL_COLOR = [
   '#e6e848'
 ];
 
+// Генерация массива с определённым количеством объектов
 var generateData = function (count) {
   var arrayResult = [];
 
@@ -87,6 +91,7 @@ var characterInformation = generateData(4);
 
 var characterTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
+// Создание персонажа со случайными параметрами
 var renderCharacter = function (character) {
   var characterClone = characterTemplate.cloneNode(true);
 
@@ -99,6 +104,7 @@ var renderCharacter = function (character) {
 
 var characterSimilarList = setupBlock.querySelector('.setup-similar-list');
 
+// Запись персонажа в созданный фрагмент
 var appendCharacterInToFragment = function (characters) {
   var characterFragment = document.createDocumentFragment();
 
@@ -113,6 +119,7 @@ characterSimilarList.appendChild(appendCharacterInToFragment(characterInformatio
 
 document.querySelector('.setup-similar').classList.remove('hidden');
 
+// Работа над открытием и закрытием диалогового окна настройки персонажа
 var closeDialog = function () {
   setupBlock.classList.add('hidden');
 
@@ -151,7 +158,7 @@ setupButtonClose.addEventListener('keydown', function (evt) {
   }
 });
 
-
+// Работа со сменой цвета игрового персонажа
 var mainCharacter = document.querySelector('.setup-player');
 
 var getInputByName = function (inputName) {
