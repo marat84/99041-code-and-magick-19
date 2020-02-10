@@ -7,6 +7,7 @@
   var setupButtonClose = setupBlock.querySelector('.setup-close');
   var setupInput = setupBlock.querySelector('.setup-user-name');
   var mainCharacter = setupBlock.querySelector('.setup-player');
+  var uploadElement = setupBlock.querySelector('.upload');
   var playerCoatClassName = '.wizard-coat';
   var playerEyesClassName = '.wizard-eyes';
 
@@ -17,6 +18,7 @@
     setupButtonClose: setupButtonClose,
     setupInput: setupInput,
     mainCharacter: mainCharacter,
+    uploadElement: uploadElement,
     playerCoatClassName: playerCoatClassName,
     playerEyesClassName: playerEyesClassName
   };
