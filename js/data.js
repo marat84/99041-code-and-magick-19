@@ -46,7 +46,23 @@
     '#e6e848'
   ];
 
+  // Генерация массива с определённым количеством объектов
+  var generateData = function (count) {
+    var arrayResult = [];
+
+    for (var i = 0; i < count; i++) {
+      arrayResult.push({
+        name: window.utils.getRandomValue(CHARACTER_NAMES) + ' ' + window.utils.getRandomValue(CHARACTER_SECOND_NAMES),
+        coatColor: window.utils.getRandomValue(CHARACTER_COAT_COLORS),
+        eyesColor: window.utils.getRandomValue(CHARACTER_EYES_COLORS)
+      });
+    }
+
+    return arrayResult;
+  };
+
   window.data = {
+    generateData: generateData,
     ENTER_KEY: ENTER_KEY,
     ESCAPE_KEY: ESCAPE_KEY,
     CHARACTER_NAMES: CHARACTER_NAMES,

@@ -6,7 +6,7 @@
   var playerCoatClassName = window.variables.playerCoatClassName;
   var playerEyesClassName = window.variables.playerEyesClassName;
 
-  var characterInformation = window.utils.generateData(4);
+  var characterInformation = window.data.generateData(4);
 
   // Запись персонажа в созданный фрагмент
   var appendCharacterInToFragment = function (characters) {
