@@ -3,10 +3,11 @@
 (function () {
   var enterKey = window.data.ENTER_KEY;
   var escapeKey = window.data.ESCAPE_KEY;
-  var setupBlock = window.variables.setupBlock;
-  var setupButtonOpen = window.variables.setupButtonOpen;
-  var setupButtonClose = window.variables.setupButtonClose;
-  var setupInput = window.variables.setupInput;
+
+  var setupBlock = window.utils.setupBlock;
+  var setupButtonOpen = document.querySelector('.setup-open');
+  var setupButtonClose = setupBlock.querySelector('.setup-close');
+  var setupInput = setupBlock.querySelector('.setup-user-name');
 
   // Работа над открытием и закрытием диалогового окна настройки персонажа
   var closeDialog = function () {

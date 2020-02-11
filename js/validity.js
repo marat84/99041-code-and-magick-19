@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var setupInput = window.variables.setupInput;
+  var setupInput = window.utils.setupBlock.querySelector('.setup-user-name');
 
   // Работа над валидацие поля имени персонажа в диалоговом окне
   var inputMinLength = +setupInput.getAttribute('minlength') || 2;

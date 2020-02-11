@@ -1,10 +1,10 @@
 'use strict';
 
 (function () {
-  var setupBlock = window.variables.setupBlock;
-  var characterTemplate = window.variables.characterTemplate;
-  var playerCoatClassName = window.variables.playerCoatClassName;
-  var playerEyesClassName = window.variables.playerEyesClassName;
+  var setupBlock = window.utils.setupBlock;
+  var playerCoatClassName = window.utils.playerCoatClassName;
+  var playerEyesClassName = window.utils.playerEyesClassName;
+  var characterTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
   var characterInformation = window.data.generateData(4);
 

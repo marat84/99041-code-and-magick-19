@@ -1,8 +1,8 @@
 'use strict';
 
 (function () {
-  var uploadElement = window.variables.uploadElement;
-  var setupBlock = window.variables.setupBlock;
+  var setupBlock = window.utils.setupBlock;
+  var uploadElement = setupBlock.querySelector('.upload');
 
   uploadElement.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
@@ -36,7 +36,6 @@
       window.removeEventListener('mouseup', mouseUpHandler);
 
       if (isMove) {
-        // debugger;
         var clickUploadHandler = function (clickEvt) {
           clickEvt.preventDefault();
           uploadElement.removeEventListener('click', clickUploadHandler);

@@ -1,8 +1,8 @@
 'use strict';
 
 (function () {
-  var playerCoatClassName = window.variables.playerCoatClassName;
-  var playerEyesClassName = window.variables.playerEyesClassName;
+  var playerCoatClassName = window.utils.playerCoatClassName;
+  var playerEyesClassName = window.utils.playerEyesClassName;
 
   var getRandomValue = window.utils.getRandomValue;
   var getInputByName = window.utils.getInputByName;
@@ -10,7 +10,7 @@
   var characterEyesColors = window.data.CHARACTER_EYES_COLORS;
   var characterFireballColor = window.data.CHARACTER_FIREBALL_COLOR;
 
-  var mainCharacter = window.variables.mainCharacter;
+  var mainCharacter = window.utils.setupBlock.querySelector('.setup-player');
 
   var filterClickHandler = function (evt) {
     var target = evt.target;
