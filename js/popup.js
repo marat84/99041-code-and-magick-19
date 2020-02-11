@@ -12,6 +12,9 @@
   var closeDialog = function () {
     setupBlock.classList.add('hidden');
 
+    setupBlock.style.top = '';
+    setupBlock.style.left = '';
+
     document.removeEventListener('keydown', documentKeyDownHandler);
   };
 
