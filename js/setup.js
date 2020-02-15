@@ -11,6 +11,8 @@
   var characterFireballColor = window.data.CHARACTER_FIREBALL_COLOR;
 
   var mainCharacter = window.utils.setupBlock.querySelector('.setup-player');
+  var setupForm = window.utils.setupBlock.querySelector('.setup-wizard-form');
+  var setupFormButton = setupForm.querySelector('.setup-submit');
 
   var filterClickHandler = function (evt) {
     var target = evt.target;
@@ -35,4 +37,17 @@
   };
 
   mainCharacter.addEventListener('click', filterClickHandler);
+
+  setupForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+
+    var data = new FormData(setupForm);
+
+    window.backend.save(data, window.backend.showMessage, window.backend.showMessage);
+  });
+
+  window.setup = {
+    setupFormButton: setupFormButton
+  };
+
 })();

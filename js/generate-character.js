@@ -33,7 +33,7 @@
 
   var onLoad = function (loadData) {
 
-    loadData = loadData || window.backend.showError('Данные отсутсвуют', 'Проверте правильность запроса');
+    loadData = loadData || window.backend.showMessage('Данные отсутсвуют', 'Проверте правильность запроса');
 
     characterSimilarList.appendChild(appendCharacterInToFragment(loadData));
 
@@ -41,5 +41,5 @@
 
   };
 
-  window.backend.load(onLoad, window.backend.showError);
+  window.backend.load(onLoad, window.backend.showMessage);
 })();
