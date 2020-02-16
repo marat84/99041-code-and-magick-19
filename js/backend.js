@@ -96,20 +96,13 @@
     xhr.timeout = XHR_TIMEOUT;
 
     xhr.open('POST', XHR_SAVE_URL);
-    var textButton = window.setup.setupFormButton.textContent;
 
-    window.setup.setupFormButton.disabled = true;
-    window.setup.setupFormButton.textContent = 'Сохранение данных...';
-
-    var resetButtonForm = function () {
-      window.setup.setupFormButton.disabled = false;
-      window.setup.setupFormButton.textContent = textButton;
-    };
+    var setDefaultStateButton = window.setup.setDefaultStateButton;
 
     xhr.addEventListener('load', function () {
       if (xhr.status === 200) {
         window.utils.setupBlock.classList.add('hidden');
-        resetButtonForm();
+        setDefaultStateButton();
 
         onLoad(
             {
@@ -120,7 +113,7 @@
         );
       } else {
         onError(getErrorStatus(xhr.status));
-        resetButtonForm();
+        setDefaultStateButton();
       }
     });
 
@@ -129,7 +122,7 @@
         title: 'Ошибка соединения',
         text: 'Возможно, введён некорректный адрес или у вас отсутсвует интернет соединение'
       });
-      resetButtonForm();
+      setDefaultStateButton();
     });
 
     xhr.addEventListener('timeout', function () {
@@ -137,7 +130,7 @@
         title: 'Время на выполнение запроса истекло. Возможно, ваше интерент соединение не стабильно или сервер перегружен',
         text: 'Проверте ваше интернет соединение или попробуйте зайти позже'
       });
-      resetButtonForm();
+      setDefaultStateButton();
     });
 
     xhr.send(data);

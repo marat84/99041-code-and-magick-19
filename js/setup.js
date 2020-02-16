@@ -13,6 +13,7 @@
   var mainCharacter = window.utils.setupBlock.querySelector('.setup-player');
   var setupForm = window.utils.setupBlock.querySelector('.setup-wizard-form');
   var setupFormButton = setupForm.querySelector('.setup-submit');
+  var textButton = setupFormButton.textContent;
 
   var filterClickHandler = function (evt) {
     var target = evt.target;
@@ -38,16 +39,27 @@
 
   mainCharacter.addEventListener('click', filterClickHandler);
 
+  var setDefaultStateButton = function () {
+    setupFormButton.disabled = false;
+    setupFormButton.textContent = textButton;
+  };
+
+  var setSendStateButton = function () {
+    setupFormButton.disabled = true;
+    setupFormButton.textContent = 'Сохранение данных...';
+  };
+
   setupForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
 
     var data = new FormData(setupForm);
+    setSendStateButton();
 
     window.backend.save(data, window.message.showMessage, window.message.showMessage);
   });
 
   window.setup = {
-    setupFormButton: setupFormButton
+    setDefaultStateButton: setDefaultStateButton
   };
 
 })();
