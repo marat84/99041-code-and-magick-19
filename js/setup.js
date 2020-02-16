@@ -43,7 +43,7 @@
 
     var data = new FormData(setupForm);
 
-    window.backend.save(data, window.backend.showMessage, window.backend.showMessage);
+    window.backend.save(data, window.message.showMessage, window.message.showMessage);
   });
 
   window.setup = {

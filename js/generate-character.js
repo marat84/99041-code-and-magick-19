@@ -32,8 +32,10 @@
   };
 
   var onLoad = function (loadData) {
-
-    loadData = loadData || window.backend.showMessage('Данные отсутсвуют', 'Проверте правильность запроса');
+    loadData = loadData || window.message.showMessage({
+      title: 'Данные отсутсвуют',
+      text: 'Проверте правильность запроса'
+    });
 
     characterSimilarList.appendChild(appendCharacterInToFragment(loadData));
 
@@ -41,5 +43,5 @@
 
   };
 
-  window.backend.load(onLoad, window.backend.showMessage);
+  window.backend.load(onLoad, window.message.showMessage);
 })();
