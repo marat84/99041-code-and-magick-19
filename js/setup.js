@@ -55,11 +55,25 @@
     var data = new FormData(setupForm);
     setSendStateButton();
 
-    window.backend.save(data, window.message.showMessage, window.message.showMessage);
-  });
+    window.backend.save(data, function () {
+      window.utils.setupBlock.classList.add('hidden');
 
-  window.setup = {
-    setDefaultStateButton: setDefaultStateButton
-  };
+      window.message.showMessage(
+          {
+            title: 'Поздравляю',
+            text: 'Ваш запрос успешно отправлен'
+          },
+          true
+      );
+
+      setDefaultStateButton();
+    }, function (status) {
+      var statusMessage = (status && typeof status === 'object') ? status : window.message.getErrorStatus(status);
+
+      window.message.showMessage(statusMessage);
+
+      setDefaultStateButton();
+    });
+  });
 
 })();

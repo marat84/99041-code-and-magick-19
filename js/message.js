@@ -6,6 +6,59 @@
   var ERROR_SHOW_TIME = 6000;
   var TRANSITION_DURATION = 0.5;
 
+  var getErrorStatus = function (status) {
+    switch (status) {
+      case 500:
+        return {
+          title: 'Сервер обнаружил непредвиденное состояние, которое не позволило ему выполнить запрос',
+          text: 'Попробуйте зайти позже'
+        };
+      case 400:
+      case 404:
+      case 410:
+        return {
+          title: 'Не возможно получить доступ к странице',
+          text: 'Возможно, введён некорректный адрес или страница была удалена'
+        };
+      case 401:
+      case 403:
+      case 407:
+        return {
+          title: 'У вас нет доступа',
+          text: 'Попробуйте сбросить кэш браузера и очистить cookies'
+        };
+      case 405:
+      case 411:
+      case 412:
+      case 413:
+      case 414:
+      case 415:
+      case 416:
+      case 417:
+      case 501:
+        return {
+          title: 'Некорректно указанный запрос',
+          text: 'Проверте правильность запроса'
+        };
+      case 503:
+        return {
+          title: 'Сервер не доступен',
+          text: 'Попробуйте зайти позже'
+        };
+      case 419:
+      case 504:
+        return {
+          title: 'Время на выполнение запроса истекло',
+          text: 'Попробуйте зайти позже'
+        };
+      default:
+        return {
+          title: 'Неизвестный статус: ' + status,
+          text: 'Проверте правильность запроса'
+        };
+    }
+  };
+
   var hideTimeoutMessage = function (block, isSuccess) {
     var colorTimerBlock = (isSuccess) ? SUCCESS_COLOR : ERROR_COLOR;
     var timerBlock = document.createElement('div');
@@ -60,7 +113,8 @@
   };
 
   window.message = {
-    showMessage: showMessage
+    showMessage: showMessage,
+    getErrorStatus: getErrorStatus
   };
 
 })();
