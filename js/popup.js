@@ -1,9 +1,6 @@
 'use strict';
 
 (function () {
-  var enterKey = window.data.ENTER_KEY;
-  var escapeKey = window.data.ESCAPE_KEY;
-
   var setupBlock = window.utils.setupBlock;
   var setupButtonOpen = document.querySelector('.setup-open');
   var setupButtonClose = setupBlock.querySelector('.setup-close');
@@ -26,7 +23,7 @@
   };
 
   var documentKeyDownHandler = function (evt) {
-    if (evt.key === escapeKey && evt.target !== setupInput) {
+    if (evt.key === window.data.ESCAPE_KEY && evt.target !== setupInput) {
       closeDialog();
     }
   };
@@ -40,13 +37,13 @@
   });
 
   setupButtonOpen.addEventListener('keydown', function (evt) {
-    if (evt.key === enterKey) {
+    if (evt.key === window.data.ENTER_KEY) {
       openDialog();
     }
   });
 
   setupButtonClose.addEventListener('keydown', function (evt) {
-    if (evt.key === enterKey) {
+    if (evt.key === window.data.ENTER_KEY) {
       closeDialog();
     }
   });
