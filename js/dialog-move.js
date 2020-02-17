@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-  var setupBlock = window.utils.setupBlock;
-  var uploadElement = setupBlock.querySelector('.upload');
+  var uploadElement = window.utils.setupBlock.querySelector('.upload');
 
   uploadElement.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
@@ -25,8 +24,8 @@
       startX = endX;
       startY = endY;
 
-      setupBlock.style.left = setupBlock.offsetLeft - shiftX + 'px';
-      setupBlock.style.top = setupBlock.offsetTop - shiftY + 'px';
+      window.utils.setupBlock.style.left = window.utils.setupBlock.offsetLeft - shiftX + 'px';
+      window.utils.setupBlock.style.top = window.utils.setupBlock.offsetTop - shiftY + 'px';
     };
 
     var mouseUpHandler = function (mouseUp) {

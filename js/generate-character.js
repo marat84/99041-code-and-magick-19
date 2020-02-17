@@ -1,38 +1,45 @@
 'use strict';
 
 (function () {
-  var setupBlock = window.utils.setupBlock;
-  var playerCoatClassName = window.utils.playerCoatClassName;
-  var playerEyesClassName = window.utils.playerEyesClassName;
-  var characterTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+  var CHARACTER_COUNT = 4;
 
-  var characterInformation = window.data.generateData(4);
+  var setupBlock = window.utils.setupBlock;
+  var characterTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+  var characterSimilarList = setupBlock.querySelector('.setup-similar-list');
+
+  // Создание персонажа со случайными параметрами
+  var renderCharacter = function (character) {
+    var characterClone = characterTemplate.cloneNode(true);
+
+    characterClone.querySelector(window.utils.playerCoatClassName).style.fill = character.colorCoat;
+    characterClone.querySelector(window.utils.playerEyesClassName).style.fill = character.colorEyes;
+    characterClone.querySelector('.setup-similar-label').textContent = character.name;
+
+    return characterClone;
+  };
 
   // Запись персонажа в созданный фрагмент
   var appendCharacterInToFragment = function (characters) {
     var characterFragment = document.createDocumentFragment();
 
-    for (var i = 0; i < characters.length; i++) {
+    for (var i = 0; i < CHARACTER_COUNT; i++) {
       characterFragment.appendChild(renderCharacter(characters[i]));
     }
 
     return characterFragment;
   };
 
-  // Создание персонажа со случайными параметрами
-  var renderCharacter = function (character) {
-    var characterClone = characterTemplate.cloneNode(true);
+  var onLoad = function (loadData) {
+    loadData = loadData || window.message.showMessage({
+      title: 'Данные отсутсвуют',
+      text: 'Проверте правильность запроса'
+    });
 
-    characterClone.querySelector(playerCoatClassName).style.fill = character.coatColor;
-    characterClone.querySelector(playerEyesClassName).style.fill = character.eyesColor;
-    characterClone.querySelector('.setup-similar-label').textContent = character.name;
+    characterSimilarList.appendChild(appendCharacterInToFragment(loadData));
 
-    return characterClone;
+    setupBlock.querySelector('.setup-similar').classList.remove('hidden');
+
   };
 
-  var characterSimilarList = setupBlock.querySelector('.setup-similar-list');
-
-  characterSimilarList.appendChild(appendCharacterInToFragment(characterInformation));
-
-  setupBlock.querySelector('.setup-similar').classList.remove('hidden');
+  window.backend.load(onLoad, window.message.showMessage);
 })();
