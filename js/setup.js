@@ -8,7 +8,7 @@
 
   var filterClickHandler = function (evt) {
     var target = evt.target;
-    var randomCoatColor = window.utils.getRandomValue(window.data.CHARACTER_COAT_COLOR);
+    var randomCoatColor = window.utils.getRandomValue(window.data.CHARACTER_COAT_COLORS);
     var randomEyesColor = window.utils.getRandomValue(window.data.CHARACTER_EYES_COLORS);
     var randomFireballColor = window.utils.getRandomValue(window.data.CHARACTER_FIREBALL_COLOR);
 
