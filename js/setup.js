@@ -6,26 +6,59 @@
   var setupFormButton = setupForm.querySelector('.setup-submit');
   var textButton = setupFormButton.textContent;
 
+  var Input = function (coat, eyes, fireball) {
+    this.coat = coat;
+    this.eyes = eyes;
+    this.fireball = fireball;
+  };
+
+  var hiddenInputs = new Input(
+      window.utils.getInputByName('coat-color'),
+      window.utils.getInputByName('eyes-color'),
+      window.utils.getInputByName('fireball-color')
+  );
+
+  var randomCoatColor = hiddenInputs.coat.value;
+  var randomEyesColor = hiddenInputs.eyes.value;
+  var randomFireballColor = hiddenInputs.fireball.value;
+  var character = [];
+
+  var onLoad = function (loadData) {
+    character = loadData;
+    updateCoatColor();
+  };
+
+  var updateCoatColor = function () {
+    window.filter.filterCharacter(randomCoatColor, randomEyesColor, character);
+  };
+
+  window.backend.load(onLoad, window.message.showMessage);
+
   var filterClickHandler = function (evt) {
     var target = evt.target;
-    var randomCoatColor = window.utils.getRandomValue(window.data.CHARACTER_COAT_COLORS);
-    var randomEyesColor = window.utils.getRandomValue(window.data.CHARACTER_EYES_COLORS);
-    var randomFireballColor = window.utils.getRandomValue(window.data.CHARACTER_FIREBALL_COLOR);
 
     if (target && target.matches(window.utils.playerCoatClassName)) {
+      randomCoatColor = window.utils.getRandomValue(window.data.CHARACTER_COAT_COLORS);
+
       target.style.fill = randomCoatColor;
-      window.utils.getInputByName('coat-color').value = randomCoatColor;
+      hiddenInputs.coat.value = randomCoatColor;
     }
 
     if (target && target.matches(window.utils.playerEyesClassName)) {
+      randomEyesColor = window.utils.getRandomValue(window.data.CHARACTER_EYES_COLORS);
+
       target.style.fill = randomEyesColor;
-      window.utils.getInputByName('eyes-color').value = randomEyesColor;
+      hiddenInputs.eyes.value = randomEyesColor;
     }
 
     if (target && target.matches('.setup-fireball')) {
+      randomFireballColor = window.utils.getRandomValue(window.data.CHARACTER_FIREBALL_COLOR);
+
       target.parentElement.style.background = randomFireballColor;
-      window.utils.getInputByName('fireball-color').value = randomFireballColor;
+      hiddenInputs.fireball.value = randomFireballColor;
     }
+
+    updateCoatColor();
   };
 
   mainCharacter.addEventListener('click', filterClickHandler);
