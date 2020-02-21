@@ -3,9 +3,7 @@
 (function () {
   var CHARACTER_COUNT = 4;
 
-  var setupBlock = window.utils.setupBlock;
   var characterTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-  var characterSimilarList = setupBlock.querySelector('.setup-similar-list');
 
   // Создание персонажа со случайными параметрами
   var renderCharacter = function (character) {
@@ -29,17 +27,8 @@
     return characterFragment;
   };
 
-  var onLoad = function (loadData) {
-    loadData = loadData || window.message.showMessage({
-      title: 'Данные отсутсвуют',
-      text: 'Проверте правильность запроса'
-    });
-
-    characterSimilarList.appendChild(appendCharacterInToFragment(loadData));
-
-    setupBlock.querySelector('.setup-similar').classList.remove('hidden');
-
+  window.generateCharacter = {
+    appendCharacterInToFragment: appendCharacterInToFragment
   };
 
-  window.backend.load(onLoad, window.message.showMessage);
 })();

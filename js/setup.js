@@ -1,9 +1,12 @@
 'use strict';
 
 (function () {
+  var DEBOUNCE_TIMEOUT = 500;
+
   var mainCharacter = window.utils.setupBlock.querySelector('.setup-player');
   var setupForm = window.utils.setupBlock.querySelector('.setup-wizard-form');
   var setupFormButton = setupForm.querySelector('.setup-submit');
+  var characterSimilarList = window.utils.setupBlock.querySelector('.setup-similar-list');
   var textButton = setupFormButton.textContent;
 
   var Input = function (coat, eyes, fireball) {
@@ -26,10 +29,25 @@
   var onLoad = function (loadData) {
     character = loadData;
     updateCoatColor();
+
+    window.utils.setupBlock.querySelector('.setup-similar').classList.remove('hidden');
+  };
+
+  var lastTimeout;
+  var debounce = function (cb) {
+    if (lastTimeout) {
+      clearTimeout(lastTimeout);
+    }
+    lastTimeout = setTimeout(cb, DEBOUNCE_TIMEOUT);
   };
 
   var updateCoatColor = function () {
-    window.filter.filterCharacter(randomCoatColor, randomEyesColor, character);
+    characterSimilarList.innerHTML = '';
+    characterSimilarList.appendChild(
+        window.generateCharacter.appendCharacterInToFragment(
+            window.filter.filterCharacter(randomCoatColor, randomEyesColor, character)
+        )
+    );
   };
 
   window.backend.load(onLoad, window.message.showMessage);
@@ -42,6 +60,8 @@
 
       target.style.fill = randomCoatColor;
       hiddenInputs.coat.value = randomCoatColor;
+
+      debounce(updateCoatColor);
     }
 
     if (target && target.matches(window.utils.playerEyesClassName)) {
@@ -49,6 +69,8 @@
 
       target.style.fill = randomEyesColor;
       hiddenInputs.eyes.value = randomEyesColor;
+
+      debounce(updateCoatColor);
     }
 
     if (target && target.matches('.setup-fireball')) {
@@ -58,7 +80,6 @@
       hiddenInputs.fireball.value = randomFireballColor;
     }
 
-    updateCoatColor();
   };
 
   mainCharacter.addEventListener('click', filterClickHandler);
